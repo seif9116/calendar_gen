@@ -15,9 +15,13 @@ def process_pages(docs):
     return pages
 
 def create_ics_text(info):
-    init_ics = "Use the following information to create .ics for my Final Exams, Midterms, Quizzes, Assignments \n As well keep in mind, I live in Edmonton Alberta"
+    header = '### Create .ics files only and with no explanation \n'
+    subheader = '### Use the following information to create calendar events for my Final Exams, Midterms, Quizzes, and Assignments \n'
+    subsubheader = '### As well keep in mind I live in Edmonton, Alberta.'
+    
+    init_ics = header + subheader + subsubheader
     for page in info:
-        init_ics += page
+        init_ics += page.page_content
     print(init_ics)
     return openai.ChatCompletion.create(
             model='gpt-3.5-turbo-16k',
@@ -26,8 +30,9 @@ def create_ics_text(info):
                 ]
             )['choices'][0]['message']['content']
 
-def create_ics(db, k=6):
-    ics_text = create_ics_text(process_pages(get_dates(db, k)))
+def create_ics(db, k=15):
+    ics_text = create_ics_text(get_dates(db,k))
+    #ics_text = create_ics_text(process_pages(get_dates(db, k)))
     with open('syllabus.ics', 'w') as f:
         f.write(ics_text)
 
