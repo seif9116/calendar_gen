@@ -55,7 +55,7 @@ export default function Home() {
                 </div> 
                 <div className="sub-title">
                     Drop in a PDF syllabus to extract dates for Midterms, Quizes, Assignments and More!
-                    Receieve an ICS File that can be imported into any calendar.
+                    Generate an ICS File that can be imported into any calendar.
                 </div> 
                 <div 
                     className="drop-container"
@@ -77,7 +77,7 @@ export default function Home() {
                         <p style={{ color: '#007BFF', fontSize: '16px' }}>Drop the PDF here ...</p> :
                         showDownload? 
                         <p style={{ color: '#333', fontSize: '16px' }}> ICS file generation complete </p> :
-                        <p style={{ color: '#333', fontSize: '16px' }}>Drag 'n' drop a PDF here, or click to select a PDF</p> 
+                        <p style={{ color: '#333', fontSize: '16px' }}>Drag and drop a PDF here, or click to select a PDF</p> 
                     }
                 </div>
                 <div className="buttons-container">

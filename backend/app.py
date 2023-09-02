@@ -1,6 +1,5 @@
 from flask import Flask, Blueprint, request, jsonify, send_file
 from flask_cors import CORS
-from main import main 
 from processing import create_ics
 from dotenv import load_dotenv
 from ingest import ingest_data
