@@ -1,18 +1,21 @@
-FROM python:3.11-slim-buster
+FROM debian:bookworm
 
 RUN apt-get update && \
-    apt-get install -y build-essential
+    apt-get install -y build-essential sqlite3 python3-pip python3-venv
 
-WORKDIR /calendar-gen
+RUN python3 -m venv env
+ENV PATH="/env/bin/:$PATH"
 
-RUN mkdir -p ./backend
+WORKDIR /calendar-gen/backend
 
-COPY ./backend/requirements.txt ./backend
+RUN apt-get update && \
+    apt-get install -y build-essential wget tar
 
-RUN cd ./backend && pip install --no-cache-dir -r requirements.txt
+COPY ./backend/requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY ./backend ./
 
 EXPOSE 5000
 
-ENV FLASK_APP=main.py
-
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["gunicorn", "wsgi:app", "--bind", "0.0.0.0:5000"]

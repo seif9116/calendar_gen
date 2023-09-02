@@ -1,12 +1,12 @@
 version: '3'
 services:
-    web:
+    flask:
         build:
             context: .
             dockerfile: Dockerfile.backend
         ports:
             - "5000:5000"
-    frontend:
+    app:
         build:
             context: .
             dockerfile: Dockerfile.frontend

@@ -1,7 +1,7 @@
 "use client"
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Loading from './loading';
 import "./globals.css";
 import { apiUploadSyllabus } from './api/apit';
@@ -25,7 +25,7 @@ export default function Home() {
             window.URL.revokeObjectURL(url);
         }
     };
-
+    
     const onDrop = useCallback((acceptedFiles : any) => {
         acceptedFiles.forEach((file: File) => {
             setLoading(true);

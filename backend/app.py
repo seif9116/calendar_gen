@@ -43,9 +43,14 @@ def register_routes(app: Flask):
     
     app.register_blueprint(app_bp)
 
-if __name__ == "__main__":
+
+def create_app(dev=True):
 
     app = Flask(__name__)
     CORS(app)
-    register_routes(app) 
-    app.run(debug=True)
+    register_routes(app)
+
+    if dev: 
+        app.run(debug=True)
+    else:   
+        return app
