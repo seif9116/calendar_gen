@@ -7,11 +7,14 @@ from langchain.document_loaders import PyPDFLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 
-def ingest_data(file_path):
+def ingest_data(file_path=None):
 
     load_dotenv()
     openai.api_key = os.environ.get('OPENAI_API_KEY')
-    file_path = os.path.expanduser('~/university/bachelor_3/fall/ACCTG311/syllabus.pdf')
+        
+    if not file_path:
+        file_path = os.path.expanduser('phil-syllabus.pdf')
+    
     loader = PyPDFLoader(file_path)
     text_splitter = RecursiveCharacterTextSplitter(
             chunk_size = 1000,

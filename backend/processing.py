@@ -1,4 +1,5 @@
 import openai
+import os
 
 def get_dates(db, k: int):
     query = "What are the dates, times and locations for Midterms, Quizzes, Assignemnts, and Final Exams" 
@@ -31,8 +32,12 @@ def create_ics_text(info):
             )['choices'][0]['message']['content']
 
 def create_ics(db, k=15):
+    gen_path = os.path.join(os.path.dirname(__file__), "gen")
     ics_text = create_ics_text(get_dates(db,k))
-    #ics_text = create_ics_text(process_pages(get_dates(db, k)))
-    with open('syllabus.ics', 'w') as f:
+
+    write_path = os.path.join(gen_path, 'syllabus.ics') 
+    with open(write_path, 'w') as f:
         f.write(ics_text)
+
+    return write_path
 
