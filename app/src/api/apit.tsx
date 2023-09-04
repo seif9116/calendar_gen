@@ -4,8 +4,8 @@ export const apiUploadSyllabus = async (file: File) => {
 
     const PORT_ENV = process.env.PORT;
     const PORT = PORT_ENV === undefined ? 5000 : PORT_ENV;
-    const APP_URI = process.env.DEPLOY_MODE === 'DEV' 
-        ? 'http://localhost:5000' 
+    const APP_URI = process.env.REACT_APP_DEPLOY_MODE === 'DEV' 
+        ? 'http://localhost' 
         : 'https://calendar-gen-5b245af668f0.herokuapp.com';
 
     console.log("environment:", PORT, APP_URI);

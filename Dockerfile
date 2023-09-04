@@ -31,9 +31,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./backend ./
 
-COPY --from=frontend /calendar-gen/app/build /calendar-gen/backend/static
+COPY --from=frontend /calendar-gen/app/build /calendar-gen/backend/build
 
-ENV PORT 5000
 ENV FLASK_ENV PROD
 
 CMD exec gunicorn wsgi:app --bind 0.0.0.0:$PORT

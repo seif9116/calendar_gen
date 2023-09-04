@@ -1,11 +1,12 @@
 from flask import Flask, Blueprint, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 from processing import create_ics
-from dotenv import load_dotenv
 from ingest import ingest_data
+from werkzeug.utils import secure_filename
+from __init__ import PORT, FLASK_ENV
+
 import os
 import openai
-from werkzeug.utils import secure_filename
 
 def handle_upload(pdf_path):
     openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -42,33 +43,38 @@ def register_routes(app: Flask):
 
     @app_bp.route("/")
     def serve():
-        # static_dir = "/calendar-gen/backend/static"
-        static_dir = "../app/build"
+        print("serve root")
+
+        prod_static_dir = '/calendar-gen/backend/build/static'
+        dev_static_dir = '../app/build'
+        
+        static_dir = dev_static_dir if FLASK_ENV == 'DEV' else prod_static_dir
         static_file = "index.html"
+        
         if os.path.exists(os.path.join(static_dir, static_file)):
             return send_from_directory(static_dir, static_file)
+ 
         else:
             return "index.html not found"
         
     app.register_blueprint(app_bp)
 
 def create_app():
-    # app = Flask(__name__, static_folder='/calendar-gen/backend/static', static_url_path='')
-    app = Flask(__name__, static_folder='../app/build', static_url_path='')
+
+    app = Flask(__name__)
+
     CORS(app)
-    register_routes(app) 
-    
-    load_dotenv()
-    PORT = os.environ.get('PORT', 5000)
-    FLASK_ENV = os.environ.get('FLASK_ENV')
-    
-    print(f"environtment config:\nflask: {FLASK_ENV} \nport: {PORT}")
 
-    if FLASK_ENV == 'DEV':
-        app.run(debug=True, host='0.0.0.0', port=PORT)
-    else:
+    print(FLASK_ENV, PORT)
+
+    if FLASK_ENV == 'PROD': 
+        app.static_folder = '/calendar-gen/backend/build/static' 
+        register_routes(app) 
         return app
-
+    else:
+        app.static_folder = '../app/build/static'
+        register_routes(app) 
+        app.run(debug=True, host='0.0.0.0', port=PORT)
 
 if __name__ == "__main__":
     create_app()

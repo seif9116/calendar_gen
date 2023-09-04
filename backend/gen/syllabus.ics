@@ -1,80 +1,28 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Calendar//Final_Exams
-X-WR-CALNAME:Final Exams
-X-WR-TIMEZONE:America/Edmonton
+PRODID:-//Calendar//Exam Events//EN
 BEGIN:VEVENT
-UID:20231214T140000-phil120@gmail.com
-DTSTAMP:20231214T140000
+SUMMARY:PHIL 120 - Midterm 1
+DESCRIPTION:Symbolic Logic I - Hassan Masoud\n\nLocation: NRE 2-003\nTime: 1:00 PM - 1:50 PM\nWeighting: 10%\nVisit eClass for sample questions.
+DTSTART:20230927T130000
+DTEND:20230927T135000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PHIL 120 - Midterm 2
+DESCRIPTION:Symbolic Logic I - Hassan Masoud\n\nLocation: NRE 2-003\nTime: 1:00 PM - 1:50 PM\nWeighting: 20%\nVisit eClass for sample questions.
+DTSTART:20231025T130000
+DTEND:20231025T135000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PHIL 120 - Midterm 3
+DESCRIPTION:Symbolic Logic I - Hassan Masoud\n\nLocation: NRE 2-003\nTime: 1:00 PM - 1:50 PM\nWeighting: 20%\nVisit eClass for sample questions.
+DTSTART:20231122T130000
+DTEND:20231122T135000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:PHIL 120 - Final Exam
+DESCRIPTION:Symbolic Logic I - Hassan Masoud\n\nLocation: TBA\nTime: 2:00 PM - 4:00 PM\nWeighting: 50%
 DTSTART:20231214T140000
 DTEND:20231214T160000
-SUMMARY:PHIL 120: Symbolic Logic I - Final Exam
-LOCATION:Edmonton, Alberta
-DESCRIPTION:The final exam for PHIL 120: Symbolic Logic I will take place on Dec. 14 at 2 PM. It will be a 2-hour exam and will cover the entire course material. 
-END:VEVENT
-END:VCALENDAR
-
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Calendar//Midterms
-X-WR-CALNAME:Midterms
-X-WR-TIMEZONE:America/Edmonton
-BEGIN:VEVENT
-UID:20230927T130000-phil120@gmail.com
-DTSTAMP:20230927T130000
-DTSTART:20230927T130000
-DTEND:20230927T134500
-SUMMARY:PHIL 120: Symbolic Logic I - Midterm 1
-LOCATION:Edmonton, Alberta
-DESCRIPTION:Midterm 1 for PHIL 120: Symbolic Logic I will take place on Sep. 27 at 1:00 PM. It will be a 45-minute exam and will cover the material from the first few weeks of the course. 
-END:VEVENT
-BEGIN:VEVENT
-UID:20231025T130000-phil120@gmail.com
-DTSTAMP:20231025T130000
-DTSTART:20231025T130000
-DTEND:20231025T134500
-SUMMARY:PHIL 120: Symbolic Logic I - Midterm 2
-LOCATION:Edmonton, Alberta
-DESCRIPTION:Midterm 2 for PHIL 120: Symbolic Logic I will take place on Oct. 25 at 1:00 PM. It will be a 45-minute exam and will cover the material from the middle portion of the course. 
-END:VEVENT
-BEGIN:VEVENT
-UID:20231122T130000-phil120@gmail.com
-DTSTAMP:20231122T130000
-DTSTART:20231122T130000
-DTEND:20231122T134500
-SUMMARY:PHIL 120: Symbolic Logic I - Midterm 3
-LOCATION:Edmonton, Alberta
-DESCRIPTION:Midterm 3 for PHIL 120: Symbolic Logic I will take place on Nov. 22 at 1:00 PM. It will be a 45-minute exam and will cover the material from the later portion of the course. 
-END:VEVENT
-END:VCALENDAR
-
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Calendar//Quizzes
-X-WR-CALNAME:Quizzes
-X-WR-TIMEZONE:America/Edmonton
-BEGIN:VEVENT
-UID:20230918T130000-phil120@gmail.com
-DTSTAMP:20230918T130000
-DTSTART:20230918T130000
-DTEND:20230918T134500
-SUMMARY:PHIL 120: Symbolic Logic I - Quiz
-LOCATION:Edmonton, Alberta
-DESCRIPTION:There will be a quiz for PHIL 120: Symbolic Logic I on Sep. 18 from 1:00 PM - 1:45 PM. It will cover the material from the first week of the course. 
-END:VEVENT
-END:VCALENDAR
-
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Calendar//Assignments
-X-WR-CALNAME:Assignments
-X-WR-TIMEZONE:America/Edmonton
-BEGIN:VEVENT
-UID:20230905T000000-phil120@gmail.com
-DTSTAMP:20230905T000000
-DTSTART:20230905T000000
-DTEND:20230905T235959
-SUMMARY:PHIL 120: Symbolic Logic I - Assignment 1 Due
-DESCRIPTION:Assignment 1 for PHIL 120: Symbolic Logic I is due on Sep. 5. Please submit it by the end of the day. 
 END:VEVENT
 END:VCALENDAR
