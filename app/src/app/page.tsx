@@ -88,7 +88,7 @@ export default function Home() {
                     </div>  
                 </div>
 
-                { loading ? <Loading></Loading> : <></>}
+                { loading ? <Loading></Loading> : <></> }
             </Container>
         </>
     );
