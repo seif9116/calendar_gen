@@ -1,9 +1,8 @@
-"use client"
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import Loading from './loading';
-import "./globals.css";
+import { Container } from 'react-bootstrap';
+import Loading from './components/loading';
+import "./styles/globals.css";
 import { apiUploadSyllabus } from './api/apit';
 import NavBar from './components/navbar';
 
