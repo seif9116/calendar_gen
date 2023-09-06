@@ -45,7 +45,7 @@ def register_routes(app: Flask):
     def serve():
         print("serve root")
 
-        prod_static_dir = '/calendar-gen/backend/build/static'
+        prod_static_dir = '/calendar-gen/backend/build'
         dev_static_dir = '../app/build'
         
         static_dir = dev_static_dir if FLASK_ENV == 'DEV' else prod_static_dir
