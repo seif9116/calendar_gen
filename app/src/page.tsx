@@ -1,9 +1,9 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Container } from 'react-bootstrap';
 import Loading from './components/loading';
 import "./styles/globals.css";
-import { apiUploadSyllabus } from './api/apit';
+import { apiUploadSyllabus } from './api/api';
 import NavBar from './components/navbar';
 
 export default function Home() {
@@ -11,6 +11,13 @@ export default function Home() {
     const [loading, setLoading] = useState<boolean>(false);
     const [showDownload, setShowDownlaod] = useState<boolean>(false);
     const [blobData, setBlobData] = useState<Blob | null>(null);
+    const [config, setConfig] = useState<any>(null);
+
+    useEffect(() => {
+        fetch('/config')
+            .then(response => response.json())
+            .then(data => setConfig(data));
+    }, [])
 
     const handleDownloadClick = () => {
         if (blobData) {
@@ -28,8 +35,8 @@ export default function Home() {
     const onDrop = useCallback((acceptedFiles : any) => {
         acceptedFiles.forEach((file: File) => {
             setLoading(true);
-            if (file.type === 'application/pdf') {
-                apiUploadSyllabus(file)
+            if (file.type === 'application/pdf' && config !== null) {
+                apiUploadSyllabus(file, config.PORT)
                     .then((data) => {
                         setLoading(false);
                         if (data) {

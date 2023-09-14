@@ -27,12 +27,13 @@ RUN apt-get update && \
     apt-get install -y build-essential wget tar
 
 COPY ./backend/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY ./backend ./
 
 COPY --from=frontend /calendar-gen/app/build /calendar-gen/backend/build
 
 ENV FLASK_ENV PROD
+ENV PORT 5000
 
 CMD exec gunicorn wsgi:app --bind 0.0.0.0:$PORT

@@ -37,9 +37,11 @@ def register_routes(app: Flask):
 
         return jsonify("error") 
 
-    @app_bp.route("/help")
-    def help():
-        return "Request received"
+    @app_bp.route("/config")
+    def config():
+        return jsonify({
+            "PORT": os.environ.get("PORT", "5000")
+        });
 
     @app_bp.route("/")
     def serve():
