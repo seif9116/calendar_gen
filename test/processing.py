@@ -1,11 +1,9 @@
 import openai
 import os
 
-
 def get_dates(db, k: int):
     query = "What are the dates, times and locations for Midterms, Quizzes, Assignemnts, and Final Exams" 
     return db.similarity_search(query, k=k)
-
 
 def process_pages(docs):
     '''This function should summarize the pages so that they only
@@ -16,7 +14,6 @@ def process_pages(docs):
             prompt = f'{prompt}\n {doc.page_content}')['choices'][0]['message']['content'] for doc in docs]
     print(pages)
     return pages
-
 
 def create_ics_text(info):
     header = '### Create .ics files only and with no explanation \n'

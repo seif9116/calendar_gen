@@ -1,0 +1,79 @@
+Example: 
+    Input:
+        Instructor: Hassan Masoud
+        Office: 2-67 Assiniboia Hall (Dept of Philosophy)
+        E-mail: hassan.masoud@ualberta.ca
+        Office Hours: Tuesday 12:00 – 1:00 PM (or by appointment)
+        Course Location, Days & Time: NRE 2-003, Monday, Wednesday, Friday 1:00 – 1:50 PM
+        Teaching assistant: Nazar Palykhata (palykhat@ualberta.ca)
+        Components of Course Grade:
+        Component
+        Weighting
+        Date
+        Midterm 1: Sep. 27 (10%)
+        Midterms (3)
+50% (10% + 20% + 20%)
+    Midterm 2: Oct. 25 (20%)
+    Midterm 3: Nov. 22 (20%)
+    Final exam
+    50%
+    Dec. 14
+    In this course:
+    Midterms: There are 3 midterms throughout the term, altogether make 50% of the course grade.
+    Each midterms will be a set of multiple-choice or short-answer questions. Midterms are taken at the
+    class time (1:00 PM – 1:50 PM) on the mentioned dates. Exams are taken on paper and no online
+    options are available.
+    Final Exam: The final exam is scheduled to be on Dec. 14 at 2 PM and it takes 2 hours. The final
+    exam will contain a set of multiple-choice, short-answer, or long-answer questions.
+    Grading: Marks for the course work and exams are given in numbers (percentages). The percentage
+    mark resulting from the entire term work and examination then produces the final letter grade for the
+    course, according to the table below (“Department of Philosophy Undergraduate Grading Scale”).
+--------------------------------------------------------------------
+    Output:
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20230905T130000
+DTEND;TZID=America/Edmonton:20230905T135000
+RRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;UNTIL=20231208T235900Z
+SUMMARY:PHIL 120 Class
+LOCATION:NRE 2-003
+DESCRIPTION:Introduction to Symbolic Logic
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20230927T130000
+DTEND;TZID=America/Edmonton:20230927T135000
+SUMMARY:PHIL 120 Midterm 1
+LOCATION:NRE 2-003
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20231025T130000
+DTEND;TZID=America/Edmonton:20231025T135000
+SUMMARY:PHIL 120 Midterm 2
+LOCATION:NRE 2-003
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20231122T130000
+DTEND;TZID=America/Edmonton:20231122T135000
+SUMMARY:PHIL 120 Midterm 3
+LOCATION:NRE 2-003
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20231214T140000
+DTEND;TZID=America/Edmonton:20231214T160000
+SUMMARY:PHIL 120 Final Exam
+LOCATION:TBD
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=America/Edmonton:20231221T130000
+DTEND;TZID=America/Edmonton:20231221T150000
+SUMMARY:PHIL 120 Deferred Final Exam
+LOCATION:TBD
+END:VEVENT
+END:VCALENDAR
