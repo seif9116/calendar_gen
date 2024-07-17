@@ -4,15 +4,35 @@ from googleapiclient.errors import HttpError
 
 def create_calendar(service: Any, data_dict: Dict[str, Any]) -> Any:
     # Calendar details
-    calendar: Dict[str, str] = {
-        'summary' : data_dict.get('course code', 'NA'),
-        'description': data_dict.get('course name', 'NA')
-    }
+    calendar_summary: str = data_dict.get('course code', 'NA')
+    calendar_description: str = data_dict.get('course name', 'NA')
 
-    # Create the calendar
+    # Check if a calendar with the same summary already exists
+    existing_calendars = service.calendarList().list().execute()
+    for calendar_entry in existing_calendars.get('items', []):
+        if calendar_entry.get('summary') == calendar_summary:
+            calendar_id = calendar_entry.get('id')
+            print(f"Found existing calendar: {calendar_summary}, clearing its events.")
+            clear_calendar_events(service, calendar_id)
+            return calendar_entry
+
+    # Create the calendar if it does not exist
+    calendar: Dict[str, str] = {
+        'summary': calendar_summary,
+        'description': calendar_description
+    }
     created_calendar: Any = service.calendars().insert(body=calendar).execute()
     print(f"Created calendar: {created_calendar['summary']}")
     return created_calendar
+
+def clear_calendar_events(service: Any, calendar_id: str) -> None:
+    events = service.events().list(calendarId=calendar_id).execute().get('items', [])
+    for event in events:
+        try:
+            service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
+            print(f"Deleted event: {event['summary']}")
+        except HttpError as error:
+            print(f"Error deleting event {event['summary']}: {error}")
 
 def make_dict_for_time(start: str, end: str) -> Dict[str, Any]:
     if ' ' not in start or ' ' not in end:
