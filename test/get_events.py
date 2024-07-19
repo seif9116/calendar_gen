@@ -6,104 +6,12 @@ from openai.types.beta.assistant import Assistant
 from openai.types.beta.thread import Thread
 from openai.types.beta.threads.run import Run
 from openai.types.beta.threads.message import Message
-from openai.types.beta.assistant_tool_param import AssistantToolParam
 from typing import List, Any, Dict, TextIO, Iterable
 from dotenv import load_dotenv
 import os
 import json
 from io import BufferedReader
-
-TOOLS: Iterable[AssistantToolParam] | NotGiven = [
-    {
-        'type': 'file_search'
-    },
-    {
-        'type': 'function',
-        'function': {
-            'name': 'get_events',
-            'description': 'Gets events from a syllabus',
-            'parameters': {
-                'type': 'object',
-                'properties': {
-                    'course name': {
-                        'type': 'string',
-                        'description': 'name of the course'
-                    },
-                    'course code': {
-                        'type': 'string',
-                        'description': 'code of the course'
-                    },
-                    'events': {
-                        'type': 'array',
-                        'items': {
-                            'type': 'object',
-                            'description': 'Each calendar event',
-                            'properties': {
-                                'name': {
-                                    'type': 'string',
-                                    'description': 'name of event',
-                                },
-                                'start': {
-                                    'type': 'string',
-                                    'description': ('start date, format: YYYY-MM-DD HH:MM:SS. '
-                                                   'For all-day events, use YYYY-MM-DD. This is required. '
-                                                   'Exclude events without a start date or with unclear dates '
-                                                   'such as "see eclass for dates". For midterms, finals, quizzes, etc., '
-                                                   'if not asynchronous, use the class start time. Do not leave this empty.')
-                                },
-                                'end': {
-                                    'type': 'string',
-                                    'description': ('end date, format should be '
-                                                   'YYYY-MM-DD HH:MM:SS. If it is an all-day '
-                                                   'event/reminder, use YYYY-MM-DD without time. '
-                                                   'For midterms, finals, quizzes, etc., if not asynchronous use the class end time.')
-                                },
-                                'description': {
-                                    'type': 'string',
-                                    'description': 'description of the event'
-                                },
-                                'location': {
-                                    'type': 'string',
-                                    'description': 'location of the event'
-                                },
-                                'EventType': {
-                                    'type': 'string',
-                                    'description': 'type of event',
-                                    'enum': [
-                                        'Assignment',
-                                             'Quiz',
-                                             'Midterm',
-                                             'Final',
-                                             'Lab',
-                                             'Other'
-                                    ],
-                                },
-                                'weight': {
-                                    'type': 'object',
-                                    'description': 'weight of the event',
-                                    'properties': {
-                                        'value': {
-                                            'type': 'number',
-                                            'description': ('value of the weight. For example 10 for 10%. '
-                                                'If special grading scheme for example drop lowest assignment, just average'
-                                                ' the weights of all assignments.')
-                                        },
-                                        'note': {
-                                            'type': 'string',
-                                            'description': 'note about the weight. For example "drop lowest grade"'
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                'required': ['course name','course code', 'events']
-            },
-
-        }
-    }
-]
+from utils import TOOLS
 
 PROMPT: str = ('Read my attached pdf and get the events for it by using this'
          'get_events function. You only want to fill out Midterms, Final Exams,'
@@ -135,7 +43,7 @@ def get_calendar_gen_assistant(client: OpenAI) -> Assistant:
         instructions=('Your job is to generate calendar files. You do this by'
                      'only using the get_events function'),
         temperature=0.00001, # to make results as deterministic as possible
-        model='gpt-4o',
+        model='gpt-4o-mini',
         tools=TOOLS
     )
 
