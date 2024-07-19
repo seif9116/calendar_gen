@@ -42,7 +42,7 @@ def get_calendar_gen_assistant(client: OpenAI) -> Assistant:
         name='Calendar File Generator',
         instructions=('Your job is to generate calendar files. You do this by'
                      'only using the get_events function'),
-        temperature=0.00001, # to make results as deterministic as possible
+        temperature=0.0000001, # to make results as deterministic as possible
         model='gpt-4o-mini',
         tools=TOOLS
     )

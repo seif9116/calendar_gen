@@ -31,11 +31,11 @@ TOOLS: Iterable[AssistantToolParam] | NotGiven = [
                 'properties': {
                     'course name': {
                         'type': 'string',
-                        'description': 'name of the course'
+                        'description': 'name of the course. e.g. Introduction to Computer Science'
                     },
                     'course code': {
                         'type': 'string',
-                        'description': 'code of the course'
+                        'description': 'code of the course, e.g. CS 101'
                     },
                     'events': {
                         'type': 'array',
@@ -47,20 +47,56 @@ TOOLS: Iterable[AssistantToolParam] | NotGiven = [
                                     'type': 'string',
                                     'description': 'name of event',
                                 },
-                                'start': {
-                                    'type': 'string',
-                                    'description': ('start date, format: YYYY-MM-DD HH:MM:SS. '
-                                                   'For all-day events, use YYYY-MM-DD. This is required. '
-                                                   'Exclude events without a start date or with unclear dates '
-                                                   'such as "see eclass for dates". For midterms, finals, quizzes, etc., '
-                                                   'if not asynchronous, use the class start time. Do not leave this empty.')
+                                'dates': {
+                                    'type': 'array',
+                                    'items': {
+                                        'type': 'object',
+                                        'description': 'Each date of the event',
+                                                'properties': {
+                                                    'start': {
+                                                        'type': 'object',
+                                                        'description': 'start date and time of the event',
+                                                'properties': {
+                                                    'date': {
+                                                        'type': 'string',
+                                                        'description': ('start date, format: YYYY-MM-DD. For events without a speicific date, like for'
+                                                            'e.g., "see eclass for dates", leave empty')
+                                                    },
+                                                'time': {
+                                                    'type': 'string',
+                                                    'description': ('start time, format: HH:MM:SS. For  all day events'
+                                                                'Leave empty for events/reminders. '
+                                                                'For a midterm, final, or quiz, etc., look for the class start time and use it.')
+                                                },
+                                                'notes': {
+                                                    'type': 'string',
+                                                    'description': ('notes about the start date and time, e.g., "see eclass for times"')
+                                                },
+                                            },
+                                        },
+                                        'end': {
+                                            'type': 'object',
+                                            'description': 'end date and time of the event',
+                                    'properties': {
+                                        'date': {
+                                            'type': 'string',
+                                            'description': ('end date, format: YYYY-MM-DD. For event without a speicific date, '
+                                                'leave empty, e.g., "see eclass for dates"')
+                                        },
+                                        'time': {
+                                            'type': 'string',
+                                            'description': ('end time, format: HH:MM:SS. For  all day events'
+                                                           'Leave empty for events/reminders.'
+                                                           'For midterms, final, quizzes, etc., use the class end time.')
+                                        },
+                                        'notes': {
+                                            'type': 'string',
+                                            'description': ('notes about the end date and time, e.g., "see eclass for times"')
+                                        },
+                                    },
                                 },
-                                'end': {
-                                    'type': 'string',
-                                    'description': ('end date, format should be '
-                                                   'YYYY-MM-DD HH:MM:SS. If it is an all-day '
-                                                   'event/reminder, use YYYY-MM-DD without time. '
-                                                   'For midterms, finals, quizzes, etc., if not asynchronous use the class end time.')
+                                        },
+                                    }
                                 },
                                 'description': {
                                     'type': 'string',

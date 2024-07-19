@@ -78,6 +78,7 @@ def make_spreadsheet(sheet_service: Any,
 def main() -> None:
     # Step 1: Get the data from pdf
     data_dict: Dict[str, Any] = get_events('input')
+    print(data_dict)
 
     # Step 2: Turn it into a calendar
     calendar_service: Any = get_service("calendar",
